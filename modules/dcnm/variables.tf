@@ -27,8 +27,8 @@ variable "dc_networks" {
     name = string
     description = string
     ip_subnet = string
-    vni = number
-    vlan = number
+    vni_id = number
+    vlan_id = number
     deploy = bool
     attachments = map(object({
       name = string
