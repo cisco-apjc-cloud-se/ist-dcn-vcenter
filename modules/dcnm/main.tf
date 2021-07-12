@@ -30,6 +30,18 @@ data "dcnm_vrf" "dc_vrf" {
   name        = var.dc_vrf
 }
 
+## Build Local Dictionary of Switch Name -> Serial Number ###
+
+locals {
+  serial_numbers = {
+      for switch in data.dcnm_inventory.dc_switches :
+          switch.switch_name => {
+            switch_name = switch.switch_name
+            serial_number = switch.serial_number
+          }
+  }
+}
+
 ## Build New L3 Networks ##
 
 resource "dcnm_network" "tf-net-1" {
