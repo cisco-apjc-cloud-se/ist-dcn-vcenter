@@ -13,10 +13,10 @@ terraform {
 ## DCNM Networking Module
 module "dcnm" {
   source = "./modules/dcnm"
-  dc_fabric = var.dc_fabric
-  dc_switches = var.dc_switches
-  dc_vrf = var.dc_vrf
-  dc_networks = var.dc_networks
+  # dc_fabric = var.dc_fabric
+  # dc_switches = var.dc_switches
+  # dc_vrf = var.dc_vrf
+  # dc_networks = var.dc_networks
 }
 
 ## VMware Module
