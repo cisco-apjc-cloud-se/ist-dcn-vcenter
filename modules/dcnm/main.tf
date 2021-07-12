@@ -37,11 +37,11 @@ resource "dcnm_network" "tf-net-1" {
 
   fabric_name     = var.dc_fabric
   name            = each.value.name
-  network_id      = each.value.vni
+  network_id      = each.value.vni_id
   # display_name    = each.key.name
   description     = each.value.description
   vrf_name        = data.dcnm_vrf.dc_vrf.name
-  vlan_id         = each.value.vlan
+  vlan_id         = each.value.vlan_id
   vlan_name       = each.value.name
   ipv4_gateway    = each.value.ip_subnet
   # ipv6_gateway    = "2001:db8::1/64"
@@ -59,7 +59,17 @@ resource "dcnm_network" "tf-net-1" {
   # rt_both_flag    = true
   # trm_enable_flag = true
   l3_gateway_flag = true
-  deploy = false
+  deploy          = false
+
+  dynamic "attachments" {
+    for_each = each.value.attachments
+    content {
+      serial_number = attachments.value["serial_number"]
+      vlan_id = attachments.value["vlan_id"]
+      attach = attachments.value["attach"]
+      switch_ports = attachments.value["switch_ports"]
+    }
+  }
 
   # attachments {
   #   serial_number = data.dcnm_inventory.DC3-N9K1.serial_number
