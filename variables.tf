@@ -23,7 +23,7 @@ variable "dc_vrf" {
 }
 
 variable "dc_networks" {
-  type = list(object({
+  type = map(object({
     name = string
     description = string
     ip_subnet = string
