@@ -33,7 +33,7 @@ variable "dc_networks" {
     attachments = map(object({
       name = string
       serial_number = string
-      vlan_id = number
+      # vlan_id = number
       attach = bool
       switch_ports = list(string)
     }))
