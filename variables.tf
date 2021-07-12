@@ -1,3 +1,15 @@
+variable "dcnm_user" {
+  type = string
+}
+
+variable "dcnm_password" {
+  type = string
+}
+
+variable "dcnm_url" {
+  type = string
+}
+
 variable "dc_fabric" {
   type = string
 }
