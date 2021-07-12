@@ -77,7 +77,7 @@ resource "dcnm_network" "tf-net-1" {
     for_each = each.value.attachments
     content {
       serial_number = attachments.value["serial_number"]
-      vlan_id = attachments.value["vlan_id"]
+      vlan_id = each.value.vlan_id
       attach = attachments.value["attach"]
       switch_ports = attachments.value["switch_ports"]
     }
