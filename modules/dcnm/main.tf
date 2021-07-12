@@ -36,14 +36,14 @@ resource "dcnm_network" "tf-net-1" {
   for_each = toset(var.dc_networks)
 
   fabric_name     = var.dc_fabric
-  name            = each.key.name
-  network_id      = each.key.vni
+  name            = each.value.name
+  network_id      = each.value.vni
   # display_name    = each.key.name
-  description     = each.key.description
+  description     = each.value.description
   vrf_name        = data.dcnm_vrf.dc_vrf.name
-  vlan_id         = each.key.vlan
-  vlan_name       = each.key.name
-  ipv4_gateway    = each.key.ip_subnet
+  vlan_id         = each.value.vlan
+  vlan_name       = each.value.name
+  ipv4_gateway    = each.value.ip_subnet
   # ipv6_gateway    = "2001:db8::1/64"
   # mtu             = 1500
   # secondary_gw_1  = "192.0.3.1/24"
