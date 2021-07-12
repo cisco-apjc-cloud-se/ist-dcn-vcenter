@@ -29,8 +29,10 @@ variable "dc_networks" {
     ip_subnet = string
     vni = number
     vlan = number
+    deploy = bool
     attachments = map(object({
       name = string
+      serial_number = string
       attach = bool
       switch_ports = list(string)
     }))

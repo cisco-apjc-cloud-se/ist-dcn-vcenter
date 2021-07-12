@@ -59,7 +59,7 @@ resource "dcnm_network" "tf-net-1" {
   # rt_both_flag    = true
   # trm_enable_flag = true
   l3_gateway_flag = true
-  deploy          = false
+  deploy          = each.value.deploy
 
   dynamic "attachments" {
     for_each = each.value.attachments
