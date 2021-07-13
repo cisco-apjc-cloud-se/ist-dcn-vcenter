@@ -36,11 +36,18 @@ locals {
   serial_numbers = {
       for switch in data.dcnm_inventory.dc_switches :
           switch.switch_name => {
-            switch_name = switch.switch_name
             serial_number = switch.serial_number
           }
   }
-  merged = merge(local.serial_numbers, var.svr_cluster)
+  merged = {
+    for switch in var.svr_cluster :
+        switch.name => {
+          name = switch.name
+          attach = switch.attach
+          switch_ports = switch.switch_ports
+          serial_number = lookup(local.serial_numbers, switch)
+        }
+  }
 }
 
 output "serial_numbers" {
