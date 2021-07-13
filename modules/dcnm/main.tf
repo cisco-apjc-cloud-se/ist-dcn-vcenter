@@ -61,7 +61,7 @@ output "merged" {
 
 ## Build New L3 Networks ##
 
-resource "dcnm_network" "tf-net-1" {
+resource "dcnm_network" "net" {
   for_each = var.dc_networks
 
   fabric_name     = var.dc_fabric
