@@ -40,10 +40,15 @@ locals {
             serial_number = switch.serial_number
           }
   }
+  merged = merge(local.serial_numbers, var.svr_cluster)
 }
 
 output "serial_numbers" {
   value = local.serial_numbers
+}
+
+output "merged" {
+  value = local.merged
 }
 
 ## Build New L3 Networks ##

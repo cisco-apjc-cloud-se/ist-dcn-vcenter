@@ -18,6 +18,16 @@ variable "dc_switches" {
   type    = list(string)
 }
 
+variable "svr_cluster" {
+  type = map(object({
+      name = string
+      # serial_number = string
+      # vlan_id = number
+      attach = bool
+      switch_ports = list(string)
+    }))
+}
+
 variable "dc_vrf" {
   type = string
 }
