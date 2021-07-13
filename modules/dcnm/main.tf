@@ -45,7 +45,7 @@ locals {
           name = switch.name
           attach = switch.attach
           switch_ports = switch.switch_ports
-          serial_number = lookup(local.serial_numbers, switch)
+          serial_number = lookup(local.serial_numbers, switch.name)
         }
   }
 }
