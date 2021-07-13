@@ -35,9 +35,10 @@ data "dcnm_vrf" "dc_vrf" {
 locals {
   serial_numbers = {
       for switch in data.dcnm_inventory.dc_switches :
-          switch.switch_name => {
-            serial_number = switch.serial_number
-          }
+          switch.switch_name => switch.serial_number
+          # switch.switch_name => {
+          #   serial_number = switch.serial_number
+          # }
   }
   merged = {
     for switch in var.svr_cluster :
