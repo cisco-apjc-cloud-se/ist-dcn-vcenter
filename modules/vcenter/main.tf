@@ -53,20 +53,20 @@ resource "vsphere_distributed_port_group" "dpg" {
 
 ### Build VM Server Group A
 resource "vsphere_virtual_machine" "grp-a" {
-  for_each            = var.vm_group_a
+  count               = var.vm_group_a.group_size
 
-  name                = each.value.name
+  name                = format("%s-%d", var.vm_group_a.name, count.index)
   resource_pool_id    = data.vsphere_compute_cluster.svr_cluster.resource_pool_id
   datastore_id        = data.vsphere_datastore.ds.id
 
-  num_cpus            = each.value.num_cpus  # 2
-  memory              = each.value.memory
+  num_cpus            = var.vm_group_a.num_cpus  # 2
+  memory              = var.vm_group_a.memory
   guest_id            = data.vsphere_virtual_machine.template.guest_id
   scsi_type           = data.vsphere_virtual_machine.template.scsi_type
 
   network_interface {
     # network_id        = each.network_id #data.vsphere_network.aciNetworkEpg1.id
-    network_id        = vsphere_distributed_port_group.dpg[each.value.network_id].id
+    network_id        = vsphere_distributed_port_group.dpg[var.vm_group_a.network_id].id
     adapter_type      = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
 
@@ -82,62 +82,61 @@ resource "vsphere_virtual_machine" "grp-a" {
 
     customize {
       linux_options {
-        host_name     = each.value.host_name
-        domain        = each.value.domain
+        host_name     = format("%s-%d", var.vm_group_a.host_name, count.index)
+        domain        = var.vm_group_a.domain
       }
 
       network_interface {
-        ipv4_address  = each.value.ip_address
-        ipv4_netmask  = each.value.mask_length
+        ipv4_address  = cidrhost(var.dc_networks[var.vm_group_a.network_id].ipv4_gateway, (count.index + 1))
+        ipv4_netmask  = regex("\\/(\\d{1,2})$",var.dc_networks[var.vm_group_a.network_id].ipv4_gateway)[0]
       }
-      ipv4_gateway    = each.value.ip_gateway
-      dns_server_list = each.value.dns_list #["64.104.123.245","171.70.168.183"]
+      ipv4_gateway    = regex("\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}",var.dc_networks[var.vm_group_a.network_id].ipv4_gateway)
+      dns_server_list = var.vm_group_a.dns_list #["64.104.123.245","171.70.168.183"]
     }
   }
 }
-
-
-### Build VM Server Group B
-resource "vsphere_virtual_machine" "grp-b" {
-  for_each            = var.vm_group_b
-
-  name                = each.value.name
-  resource_pool_id    = data.vsphere_compute_cluster.svr_cluster.resource_pool_id
-  datastore_id        = data.vsphere_datastore.ds.id
-
-  num_cpus            = each.value.num_cpus  # 2
-  memory              = each.value.memory
-  guest_id            = data.vsphere_virtual_machine.template.guest_id
-  scsi_type           = data.vsphere_virtual_machine.template.scsi_type
-
-  network_interface {
-    # network_id        = each.network_id #data.vsphere_network.aciNetworkEpg1.id
-    network_id        = vsphere_distributed_port_group.dpg[each.value.network_id].id
-    adapter_type      = data.vsphere_virtual_machine.template.network_interface_types[0]
-  }
-
-  disk {
-    label             = "disk0"
-    size              = data.vsphere_virtual_machine.template.disks.0.size
-    eagerly_scrub     = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
-    thin_provisioned  = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
-  }
-
-  clone {
-    template_uuid     = data.vsphere_virtual_machine.template.id
-
-    customize {
-      linux_options {
-        host_name     = each.value.host_name
-        domain        = each.value.domain
-      }
-
-      network_interface {
-        ipv4_address  = each.value.ip_address
-        ipv4_netmask  = each.value.mask_length
-      }
-      ipv4_gateway    = each.value.ip_gateway
-      dns_server_list = each.value.dns_list #["64.104.123.245","171.70.168.183"]
-    }
-  }
-}
+#
+# ### Build VM Server Group B
+# resource "vsphere_virtual_machine" "grp-b" {
+#   for_each            = var.vm_group_b
+#
+#   name                = each.value.name
+#   resource_pool_id    = data.vsphere_compute_cluster.svr_cluster.resource_pool_id
+#   datastore_id        = data.vsphere_datastore.ds.id
+#
+#   num_cpus            = each.value.num_cpus  # 2
+#   memory              = each.value.memory
+#   guest_id            = data.vsphere_virtual_machine.template.guest_id
+#   scsi_type           = data.vsphere_virtual_machine.template.scsi_type
+#
+#   network_interface {
+#     # network_id        = each.network_id #data.vsphere_network.aciNetworkEpg1.id
+#     network_id        = vsphere_distributed_port_group.dpg[each.value.network_id].id
+#     adapter_type      = data.vsphere_virtual_machine.template.network_interface_types[0]
+#   }
+#
+#   disk {
+#     label             = "disk0"
+#     size              = data.vsphere_virtual_machine.template.disks.0.size
+#     eagerly_scrub     = data.vsphere_virtual_machine.template.disks.0.eagerly_scrub
+#     thin_provisioned  = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
+#   }
+#
+#   clone {
+#     template_uuid     = data.vsphere_virtual_machine.template.id
+#
+#     customize {
+#       linux_options {
+#         host_name     = each.value.host_name
+#         domain        = each.value.domain
+#       }
+#
+#       network_interface {
+#         ipv4_address  = each.value.ip_address
+#         ipv4_netmask  = each.value.mask_length
+#       }
+#       ipv4_gateway    = each.value.ip_gateway
+#       dns_server_list = each.value.dns_list #["64.104.123.245","171.70.168.183"]
+#     }
+#   }
+# }

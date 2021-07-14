@@ -34,7 +34,8 @@ variable "dc_networks" {
 }
 
 variable "vm_group_a" {
-  type = map(object({
+  type = object({
+    group_size = number
     name = string
     host_name = string
     num_cpus = number
@@ -45,11 +46,12 @@ variable "vm_group_a" {
     mask_length = number
     ip_gateway = string
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
-  }))
+  })
 }
 
 variable "vm_group_b" {
-  type = map(object({
+  type = object({
+    group_size = number
     name = string
     host_name = string
     num_cpus = number
@@ -60,5 +62,5 @@ variable "vm_group_b" {
     mask_length = number
     ip_gateway = string
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
-  }))
+  })
 }
