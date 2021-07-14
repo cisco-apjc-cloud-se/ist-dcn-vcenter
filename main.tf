@@ -27,6 +27,7 @@ module "dcnm" {
 ## VMware vCenter Module
 module "vcenter" {
   source = "./modules/vcenter"
+  
   vcenter_user        = var.vcenter_user
   vcenter_password    = var.vcenter_password
   vcenter_server      = var.vcenter_server
