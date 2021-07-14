@@ -29,7 +29,7 @@ module "vcenter" {
   source = "./modules/vcenter"
   vcenter_user        = var.vcenter_user
   vcenter_password    = var.vcenter_password
-  vcenter_url         = var.vcenter_url
+  vcenter_server      = var.vcenter_server
   vcenter_dc          = var.vcenter_dc
   vcenter_cluster     = var.vcenter_cluster
   vcenter_datastore   = var.vcenter_datastore

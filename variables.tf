@@ -62,7 +62,7 @@ variable "vcenter_password" {
   type = string
 }
 
-variable "vcenter_url" {
+variable "vcenter_server" {
   type = string
 }
 
