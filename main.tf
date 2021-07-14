@@ -27,7 +27,7 @@ module "dcnm" {
 ## VMware vCenter Module
 module "vcenter" {
   source = "./modules/vcenter"
-  
+
   vcenter_user        = var.vcenter_user
   vcenter_password    = var.vcenter_password
   vcenter_server      = var.vcenter_server
@@ -38,6 +38,7 @@ module "vcenter" {
   vcenter_dvs         = var.vcenter_dvs
   dc_networks         = module.dcnm.dc_networks
   vm_group_a          = var.vm_group_a
+  vm_group_b          = var.vm_group_b
 
   # depends_on = [module.dcnm]
 }
