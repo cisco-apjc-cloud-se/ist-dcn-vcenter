@@ -66,7 +66,7 @@ resource "vsphere_virtual_machine" "grp-a" {
 
   network_interface {
     # network_id        = each.network_id #data.vsphere_network.aciNetworkEpg1.id
-    network_id        = vsphere_distributed_port_group.dpg["$each.value.network_id"].id
+    network_id        = vsphere_distributed_port_group.dpg[each.value.network_id].id
     adapter_type      = data.vsphere_virtual_machine.template.network_interface_types[0]
   }
 
