@@ -40,12 +40,12 @@ variable "dc_networks" {
     vni_id = number
     vlan_id = number
     deploy = bool
-    attachments = map(object({
-      name = string
-      serial_number = string
-      # vlan_id = number
-      attach = bool
-      switch_ports = list(string)
-    }))
+    # attachments = map(object({
+    #   name = string
+    #   serial_number = string
+    #   # vlan_id = number
+    #   attach = bool
+    #   switch_ports = list(string)
+    # }))
   }))
 }
