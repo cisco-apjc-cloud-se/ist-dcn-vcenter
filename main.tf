@@ -14,25 +14,32 @@ terraform {
 module "dcnm" {
   source = "./modules/dcnm"
 
-  dcnm_user = var.dcnm_user
+  dcnm_user     = var.dcnm_user
   dcnm_password = var.dcnm_password
-  dcnm_url = var.dcnm_url
-  dc_fabric = var.dc_fabric
-  dc_switches = var.dc_switches
-  svr_cluster = var.svr_cluster
-  dc_vrf = var.dc_vrf
-  dc_networks = var.dc_networks
+  dcnm_url      = var.dcnm_url
+  dc_fabric     = var.dc_fabric
+  dc_switches   = var.dc_switches
+  svr_cluster   = var.svr_cluster
+  dc_vrf        = var.dc_vrf
+  dc_networks   = var.dc_networks
 }
 
-## VMware Module
-# module "esxi" {
-#   source = "./modules/esxi"
-#   app1-web-net  = module.aci.app1-web-net
-#   app1-db-net   = module.aci.app1-db-net
-#   app2-web-net  = module.aci.app2-web-net
-#   app2-db-net   = module.aci.app2-db-net
-#   depends_on = [module.aci]
-# }
+## VMware vCenter Module
+module "vcenter" {
+  source = "./modules/vcenter"
+  vcenter_user        = var.vcenter_user
+  vcenter_password    = var.vcenter_password
+  vcenter_url         = var.vcenter_url
+  vcenter_dc          = var.vcenter_dc
+  vcenter_cluster     = var.vcenter_cluster
+  vcenter_datastore   = var.vcenter_datastore
+  vcenter_vmtemplate  = var.vcenter_vmtemplate
+  vcenter_dvs         = var.vcenter_dvs
+  dc_networks         = module.dcnm.dc_networks
+  vm_group_a          = var.vm_group_a
+
+  # depends_on = [module.dcnm]
+}
 
 # output "diskSize" {
 #   value = module.esxi.diskSize

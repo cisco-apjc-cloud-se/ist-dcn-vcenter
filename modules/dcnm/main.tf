@@ -51,14 +51,6 @@ locals {
   }
 }
 
-output "serial_numbers" {
-  value = local.serial_numbers
-}
-
-output "merged" {
-  value = local.merged
-}
-
 ## Build New L3 Networks ##
 
 resource "dcnm_network" "net" {

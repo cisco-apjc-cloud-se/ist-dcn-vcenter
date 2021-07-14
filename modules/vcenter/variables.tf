@@ -30,6 +30,9 @@ variable "vcenter_dvs" {
   type = string
 }
 
+variable "dc_networks" {
+}
+
 variable "vm_group_a" {
   type = map(object({
     name = string
@@ -42,17 +45,5 @@ variable "vm_group_a" {
     mask_length = number
     ip_gateway = string
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
-    # description = string
-    # ip_subnet = string
-    # vni_id = number
-    # vlan_id = number
-    # deploy = bool
-    # attachments = map(object({
-    #   name = string
-    #   serial_number = string
-    #   # vlan_id = number
-    #   attach = bool
-    #   switch_ports = list(string)
-    # }))
   }))
 }
