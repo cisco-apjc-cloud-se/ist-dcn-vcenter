@@ -55,7 +55,7 @@ resource "vsphere_distributed_port_group" "dpg" {
 resource "vsphere_virtual_machine" "grp-a" {
   count               = var.vm_group_a.group_size
 
-  name                = format("%s-%d", var.vm_group_a.name, count.index)
+  name                = format("%s-%d", var.vm_group_a.name, (count.index + 1))
   resource_pool_id    = data.vsphere_compute_cluster.svr_cluster.resource_pool_id
   datastore_id        = data.vsphere_datastore.ds.id
 
@@ -82,12 +82,12 @@ resource "vsphere_virtual_machine" "grp-a" {
 
     customize {
       linux_options {
-        host_name     = format("%s-%d", var.vm_group_a.host_name, count.index)
+        host_name     = format("%s-%d", var.vm_group_a.host_name, (count.index + 1))
         domain        = var.vm_group_a.domain
       }
 
       network_interface {
-        ipv4_address  = cidrhost(var.dc_networks[var.vm_group_a.network_id].ipv4_gateway, (count.index + 1))
+        ipv4_address  = cidrhost(var.dc_networks[var.vm_group_a.network_id].ipv4_gateway, (count.index + 2))
         ipv4_netmask  = regex("\\/(\\d{1,2})$",var.dc_networks[var.vm_group_a.network_id].ipv4_gateway)[0]
       }
       ipv4_gateway    = regex("\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}",var.dc_networks[var.vm_group_a.network_id].ipv4_gateway)
