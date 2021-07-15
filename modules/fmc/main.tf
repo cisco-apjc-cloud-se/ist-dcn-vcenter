@@ -21,7 +21,7 @@ locals {
           vm.id => vm
   }
   vm_group_b = {
-      for vm in var.vm_group_a :
+      for vm in var.vm_group_b :
           vm.id => vm
   }
 }
