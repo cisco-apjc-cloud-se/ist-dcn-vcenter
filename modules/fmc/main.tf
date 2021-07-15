@@ -32,7 +32,7 @@ resource "fmc_host_objects" "host-grp-a" {
   for_each = local.vm_group_a
 
   name = each.value.name
-  value = each.value.ipv4_address
+  value = each.value.clone.0.customize.0.network_interface.0.ipv4_address
   description = format("Host %s - Managed by Terraform", each.value.name)
 }
 
@@ -40,6 +40,6 @@ resource "fmc_host_objects" "host-grp-b" {
   for_each = local.vm_group_b
 
   name = each.value.name
-  value = each.value.ipv4_address
+  value = each.value.clone.0.customize.0.network_interface.0.ipv4_address
   description = format("Host %s - Managed by Terraform", each.value.name)
 }
