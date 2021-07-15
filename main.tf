@@ -43,6 +43,16 @@ module "vcenter" {
   # depends_on = [module.dcnm]
 }
 
-# output "diskSize" {
-#   value = module.esxi.diskSize
-# }
+## Firewpower Management Center (FMC) Module
+
+module "fmc" {
+  source = "./modules/fmc"
+
+  fmc_user      = var.fmc_user
+  fmc_password  = var.fmc_password
+  fmc_server    = var.fmc_server
+
+  vm_group_a    = module.vcenter.vm_group_a
+  vm_group_b    = module.vcenter.vm_group_b
+  
+}

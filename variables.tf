@@ -111,3 +111,17 @@ variable "vm_group_b" {
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
   })
 }
+
+### FMC Variables
+
+variable "fmc_user" {
+  type = string
+}
+
+variable "fmc_password" {
+  type = string
+}
+
+variable "fmc_server" {
+  type = string
+}
