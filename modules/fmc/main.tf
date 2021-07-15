@@ -43,3 +43,28 @@ resource "fmc_host_objects" "host-grp-b" {
   value = each.value.clone.0.customize.0.network_interface.0.ipv4_address
   description = format("Host %s - Managed by Terraform", each.value.name)
 }
+
+
+resource "fmc_network_group_objects" "host-grp-a" {
+  name          = "ist-host-group-a"
+  description   = "Host Server Group A - Terraform Managed"
+
+  dynamic "objects" {
+    # for_each = each.value.attachments
+    for_each = fmc_host_objects.host-grp-a
+    content {
+      id = objects.value["id"]
+      type = objects.value["type"]
+    }
+  }
+
+  dynamic "objects" {
+    # for_each = each.value.attachments
+    for_each = fmc_host_objects.host-grp-b
+    content {
+      id = objects.value["id"]
+      type = objects.value["type"]
+    }
+  }
+
+}
