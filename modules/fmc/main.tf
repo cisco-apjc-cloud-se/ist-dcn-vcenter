@@ -12,7 +12,7 @@ provider "fmc" {
   fmc_username              = var.fmc_user
   fmc_password              = var.fmc_password
   fmc_host                  = var.fmc_server
-  fmc_insecure_skip_verify  = false
+  fmc_insecure_skip_verify  = true
 }
 
 
