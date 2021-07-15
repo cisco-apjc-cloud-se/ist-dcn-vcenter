@@ -95,9 +95,6 @@ variable "vm_group_a" {
     memory = number
     network_id = string  ## TBC
     domain = string
-    ip_address = string
-    mask_length = number
-    ip_gateway = string
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
   })
 }
@@ -111,9 +108,6 @@ variable "vm_group_b" {
     memory = number
     network_id = string  ## TBC
     domain = string
-    ip_address = string
-    mask_length = number
-    ip_gateway = string
     dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
   })
 }
