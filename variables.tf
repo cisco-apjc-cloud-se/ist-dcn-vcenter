@@ -23,8 +23,6 @@ variable "dc_switches" {
 variable "svr_cluster" {
   type = map(object({
       name = string
-      # serial_number = string
-      # vlan_id = number
       attach = bool
       switch_ports = list(string)
     }))
@@ -42,13 +40,6 @@ variable "dc_networks" {
     vni_id = number
     vlan_id = number
     deploy = bool
-    # attachments = map(object({
-    #   name = string
-    #   serial_number = string
-    #   # vlan_id = number
-    #   attach = bool
-    #   switch_ports = list(string)
-    # }))
   }))
 }
 
@@ -93,9 +84,9 @@ variable "vm_group_a" {
     host_name = string
     num_cpus = number
     memory = number
-    network_id = string  ## TBC
+    network_id = string
     domain = string
-    dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
+    dns_list = list(string)
   })
 }
 
@@ -106,9 +97,9 @@ variable "vm_group_b" {
     host_name = string
     num_cpus = number
     memory = number
-    network_id = string  ## TBC
+    network_id = string
     domain = string
-    dns_list = list(string) ##["64.104.123.245","171.70.168.183"]
+    dns_list = list(string)
   })
 }
 

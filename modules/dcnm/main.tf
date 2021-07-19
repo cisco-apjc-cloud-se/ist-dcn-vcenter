@@ -36,9 +36,6 @@ locals {
   serial_numbers = {
       for switch in data.dcnm_inventory.dc_switches :
           switch.switch_name => switch.serial_number
-          # switch.switch_name => {
-          #   serial_number = switch.serial_number
-          # }
   }
   merged = {
     for switch in var.svr_cluster :
@@ -92,17 +89,4 @@ resource "dcnm_network" "net" {
       switch_ports = attachments.value["switch_ports"]
     }
   }
-
-  # attachments {
-  #   serial_number = data.dcnm_inventory.DC3-N9K1.serial_number
-  #   # vlan_id       = 2400
-  #   attach        = true
-  #   switch_ports = ["Ethernet1/1"]
-  # }
-  # attachments {
-  #   serial_number = data.dcnm_inventory.DC3-N9K2.serial_number
-  #   # vlan_id       = 2500
-  #   attach        = true
-  #   switch_ports = ["Ethernet1/1"]
-  # }
 }

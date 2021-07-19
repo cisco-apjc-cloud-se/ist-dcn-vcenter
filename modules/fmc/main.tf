@@ -50,7 +50,6 @@ resource "fmc_network_group_objects" "host-grp-a" {
   description   = "Host Server Group A - Terraform Managed"
 
   dynamic "objects" {
-    # for_each = each.value.attachments
     for_each = fmc_host_objects.host-grp-a
     content {
       id = objects.value["id"]
@@ -64,7 +63,6 @@ resource "fmc_network_group_objects" "host-grp-b" {
   description   = "Host Server Group B - Terraform Managed"
 
   dynamic "objects" {
-    # for_each = each.value.attachments
     for_each = fmc_host_objects.host-grp-a
     content {
       id = objects.value["id"]
