@@ -1,7 +1,7 @@
 ### DCNM Variables
 
 variable "dcnm_user" {
-  type = map(list(string))
+  type = string
 }
 
 variable "dcnm_password" {
@@ -17,7 +17,7 @@ variable "dc_fabric" {
 }
 
 variable "dc_switches" {
-  type    = list(string)
+  type = map(list(string))
 }
 
 variable "svr_cluster" {
