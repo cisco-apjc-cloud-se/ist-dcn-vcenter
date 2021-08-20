@@ -20,7 +20,8 @@ provider "dcnm" {
 data "dcnm_inventory" "dc_switches" {
   for_each = transpose(var.dc_switches)
 
-  fabric_name = each.value.fabric
+  # First item in list of transposed keys
+  fabric_name = each.value.0
   switch_name = each.key
 }
 
