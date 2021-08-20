@@ -18,7 +18,7 @@ provider "dcnm" {
 
 ## Read Switch Inventory ##
 data "dcnm_inventory" "dc_switches" {
-  for_each = local.inverted_inventory
+  for_each = transpose(var.dc_switches)
 
   fabric_name = each.value.fabric
   switch_name = each.key
@@ -46,15 +46,6 @@ locals {
           serial_number = lookup(local.serial_numbers, switch.name)
         }
   }
-  inverted_inventory = {
-    for dc_fabric, switches in var.dc_switches:
-      for switch in switches:
-        switch.name => {
-          nmae = switch.name
-          fabric = dc_fabric
-        }
-  }
-
 }
 
 ## Build New L3 Networks ##

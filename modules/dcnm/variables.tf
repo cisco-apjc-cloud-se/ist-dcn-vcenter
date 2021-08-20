@@ -15,7 +15,7 @@ variable "dc_fabric" {
 }
 
 variable "dc_switches" {
-  type    = list(string)
+  type = map(list(string))
 }
 
 variable "svr_cluster" {

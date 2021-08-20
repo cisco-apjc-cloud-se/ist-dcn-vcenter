@@ -1,7 +1,7 @@
 ### DCNM Variables
 
 variable "dcnm_user" {
-  type = string
+  type = map(list(string))
 }
 
 variable "dcnm_password" {
