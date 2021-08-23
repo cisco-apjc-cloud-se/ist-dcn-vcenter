@@ -133,7 +133,7 @@ Changes to the variables defined in the JSON files will result in dynamic, state
 
 * Increasing the number of servers in group will result in a newly clone VM, and a matching host object in FMC and that object added to the existing server network group object.  This means the new server would automatically inherit any existing security policies on the firewall(s) that reference this group object.
 
-`
+```
   "vm_group_a": {
     "group_size": 4,
     "name": "ist-svr-a",
@@ -147,11 +147,11 @@ Changes to the variables defined in the JSON files will result in dynamic, state
       "171.70.168.183"
     ]
   },
-`
+```
 
 * If a new server is added the VMware cluster, the DC networking configuration would need to be updated to ensure a consistent configuration across all members of the cluster.  With this IaC lead approach, this can be achieved be allocating new switch ports on the N9Ks and adding these to the existing configuration and the Terraform plan executed.
 
-`
+```
   "svr_cluster": {
     "DC3-N9K1": {
       "name": "DC3-N9K1",
@@ -170,11 +170,11 @@ Changes to the variables defined in the JSON files will result in dynamic, state
       ]
     }
   },
-`
+```
 
 * If a new server is added to the cluster, but is located in new rack (with its own switches) the existing configuration would be extended as follows:
 
-`
+```
   "svr_cluster": {
     "DC3-N9K1": {
       "name": "DC3-N9K1",
@@ -205,4 +205,4 @@ Changes to the variables defined in the JSON files will result in dynamic, state
       ]
     }
   },
-`
+```
