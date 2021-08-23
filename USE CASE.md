@@ -86,7 +86,7 @@ In Terraform Cloud for Business, queue a new plan to trigger the initial deploym
 ## Results
 If successfully executed, the Terraform plan will result in the following configuration for each domain manager.
 
-DCNM Module
+### DCNM Module
 * New Layer 3 VXLAN networks, as defined in the “dc_networks” JSON object, within the existing VRF, each with the following configuration:
   * Name
   * Anycast Gateway IPv4 Address/Mask
@@ -101,7 +101,7 @@ DCNM Module
 
 ![DCNM interface](/images/dcnm-interface.png)
 
-vCenter Module
+### vCenter Module
 * New distributed port groups, within the existing distributed virtual switch for each new network defined in the DCNM module.
   * Each new distributed port group will use the same name and VLAN ID as the DCNM L3 Network
 
@@ -117,7 +117,7 @@ vCenter Module
 
 ![vCenter details](/images/vcenter-details.png)
 
-FMC Module
+### FMC Module
 * New host type network objects for each VM defined the vCenter module.
   * Each VM’s name and static IP address will be used to define the host object.
 
