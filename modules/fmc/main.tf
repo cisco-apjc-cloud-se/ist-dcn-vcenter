@@ -30,19 +30,25 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
+### Existing Data Sources
+data "vsphere_datacenter" "dc" {
+  name          = var.vcenter_dc
+}
+
 ## Read vCenter Inventory ##
 data "vsphere_virtual_machine" "host-grp-a" {
   # for_each = transpose(var.dc_switches)
   count = 3
   name = format("%s-%d", "IST-SVR-A", (count.index + 1))
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_virtual_machine" "host-grp-b" {
   # for_each = transpose(var.dc_switches)
   count = 3
   name = format("%s-%d", "IST-SVR-B", (count.index + 1))
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
-
 
 # locals {
 #   vm_group_a = {
