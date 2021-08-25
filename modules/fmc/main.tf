@@ -1,11 +1,11 @@
-# terraform {
-#   required_providers {
-#     fmc = {
-#       source = "CiscoDevNet/fmc"
-#       # version = "0.1.1"
-#     }
-#   }
-# }
+terraform {
+  required_providers {
+    fmc = {
+      source = "CiscoDevNet/fmc"
+      # version = "0.1.1"
+    }
+  }
+}
 
 # provider "fmc" {
 #   # Configuration options
