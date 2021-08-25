@@ -6,22 +6,7 @@ terraform {
       name = "ist-challenge-dcn"
     }
   }
-  required_providers {
-      fmc = {
-        source = "CiscoDevNet/fmc"
-        # version = "0.1.1"
-      }
-    }
 }
-
-provider "fmc" {
-  # Configuration options
-  fmc_username              = var.fmc_user
-  fmc_password              = var.fmc_password
-  fmc_host                  = var.fmc_server
-  fmc_insecure_skip_verify  = true
-}
-
 ### Nested Modules ###
 
 ## DCNM Networking Module
@@ -64,7 +49,6 @@ module "fmc" {
   fmc_user      = var.fmc_user
   fmc_password  = var.fmc_password
   fmc_server    = var.fmc_server
-
   vm_group_a    = module.vcenter.vm_group_a
   vm_group_b    = module.vcenter.vm_group_b
 
