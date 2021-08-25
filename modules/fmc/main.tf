@@ -4,10 +4,6 @@ terraform {
       source = "CiscoDevNet/fmc"
       # version = "0.1.1"
     }
-    vsphere = {
-      source = "hashicorp/vsphere"
-      # version = "1.24.2"
-    }
   }
 }
 
@@ -18,36 +14,6 @@ provider "fmc" {
   fmc_password              = var.fmc_password
   fmc_host                  = var.fmc_server
   fmc_insecure_skip_verify  = true
-}
-
-### vSphere ESXi Provider
-provider "vsphere" {
-  user           = var.vcenter_user
-  password       = var.vcenter_password
-  vsphere_server = var.vcenter_server
-
-  # If you have a self-signed cert
-  allow_unverified_ssl = true
-}
-
-### Existing Data Sources
-data "vsphere_datacenter" "dc" {
-  name          = var.vcenter_dc
-}
-
-## Read vCenter Inventory ##
-data "vsphere_virtual_machine" "host-grp-a" {
-  # for_each = transpose(var.dc_switches)
-  count = 3
-  name = format("%s-%d", "IST-SVR-A", (count.index + 1))
-  datacenter_id = data.vsphere_datacenter.dc.id
-}
-
-data "vsphere_virtual_machine" "host-grp-b" {
-  # for_each = transpose(var.dc_switches)
-  count = 3
-  name = format("%s-%d", "IST-SVR-B", (count.index + 1))
-  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 # locals {

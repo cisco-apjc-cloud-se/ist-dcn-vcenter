@@ -52,10 +52,6 @@ module "fmc" {
   vm_group_a    = module.vcenter.vm_group_a
   vm_group_b    = module.vcenter.vm_group_b
 
-  vcenter_user        = var.vcenter_user
-  vcenter_password    = var.vcenter_password
-  vcenter_server      = var.vcenter_server
-  vcenter_dc          = var.vcenter_dc
   # depends_on = [module.vcenter]
 
 }
