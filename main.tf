@@ -68,6 +68,6 @@ module "fmc" {
   vm_group_a    = module.vcenter.vm_group_a
   vm_group_b    = module.vcenter.vm_group_b
 
-  depends_on = [module.vcenter]
+  # depends_on = [module.vcenter]
 
 }
