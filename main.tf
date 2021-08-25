@@ -45,6 +45,17 @@ module "vcenter" {
 
 ## Firewpower Management Center (FMC) Module
 
+locals {
+  vm_group_a = {
+      for vm in module.vcenter.vm_group_a :
+          vm.id => vm
+  }
+  vm_group_b = {
+      for vm in module.vcenter.vm_group_b :
+          vm.id => vm
+  }
+}
+
 module "fmc" {
   source = "./modules/fmc"
 
@@ -52,7 +63,7 @@ module "fmc" {
   fmc_password  = var.fmc_password
   fmc_server    = var.fmc_server
 
-  vm_group_a    = module.vcenter.vm_group_a
-  vm_group_b    = module.vcenter.vm_group_b
+  vm_group_a    = local.vm_group_a
+  vm_group_b    = local.vm_group_b
 
 }
