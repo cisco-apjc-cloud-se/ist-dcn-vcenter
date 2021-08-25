@@ -59,7 +59,8 @@ resource "dcnm_network" "net" {
   network_id      = each.value.vni_id
   # display_name    = each.key.name
   description     = each.value.description
-  vrf_name        = data.dcnm_vrf.dc_vrf.name
+  ## VRF name in NXOS is lower-case
+  vrf_name        = lower(data.dcnm_vrf.dc_vrf.name)
   vlan_id         = each.value.vlan_id
   vlan_name       = each.value.name
   ipv4_gateway    = each.value.ip_subnet
