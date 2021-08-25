@@ -49,8 +49,6 @@ resource "vsphere_distributed_port_group" "dpg" {
   name                            = each.value.name
   distributed_virtual_switch_uuid = data.vsphere_distributed_virtual_switch.dvs.id
   vlan_id                         = each.value.vlan_id
-  ## For my personal lab - do not trunk VLANs to physical ToR switches
-  active_uplinks                  = []
 }
 
 ### Build VM Server Group A

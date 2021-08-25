@@ -46,7 +46,7 @@ resource "fmc_host_objects" "host-grp-b" {
 
 
 resource "fmc_network_group_objects" "host-grp-a" {
-  name          = "ist-host-group-a"
+  name          = "IST-HOST-GROUP-A"
   description   = "Host Server Group A - Terraform Managed"
 
   dynamic "objects" {
@@ -59,7 +59,7 @@ resource "fmc_network_group_objects" "host-grp-a" {
 }
 
 resource "fmc_network_group_objects" "host-grp-b" {
-  name          = "ist-host-group-b"
+  name          = "IST-HOST-GROUP-B"
   description   = "Host Server Group B - Terraform Managed"
 
   dynamic "objects" {
