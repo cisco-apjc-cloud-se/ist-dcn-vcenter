@@ -17,6 +17,8 @@ This example will then use the following on-premise domain managers. These will 
 * VMware vCenter
 * Cisco Firepower Management Center (FMC)
 
+**Note:** The FMC security automation component has been moved to a 2nd GitHub repository and will now be run from a 2nd, linked Terraform workspace. This was required to allow the vCenter component to clone any number (count) of VMs.  This prevented the FMC module from predicting the number of resources required until after the vCenter module has been executed.  Instead the FMC component is now run from a 2nd linked workspace.  Any updates to the main DCNM/vCenter workplace will trigger the FMC workplace to run and update as necessary.
+
 ![Overview](/images/overview.png)
 
 The DC Networking module makes the following assumptions:
@@ -51,8 +53,11 @@ The Firepower (FMC) module makes the following assumptions:
   * FMC account password (fmc_password)
   * FMC server IP/FQDN (fmc_server)
 
-## Link to Github Repo
+**Note:** The FMC security automation component has been moved to a 2nd GitHub repository and will now be run from a 2nd, linked Terraform workspace.
+
+## Link to Github Repositories
 https://github.com/richwats/ist-challenge-dcn
+
 
 ## Steps to Deploy Use Case
 1.	In GitHub, create a new, or clone the example GitHub repository
