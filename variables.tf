@@ -102,17 +102,3 @@ variable "vm_group_b" {
     dns_list = list(string)
   })
 }
-
-### FMC Variables
-
-variable "fmc_user" {
-  type = string
-}
-
-variable "fmc_password" {
-  type = string
-}
-
-variable "fmc_server" {
-  type = string
-}

@@ -38,20 +38,4 @@ module "vcenter" {
   dc_networks         = module.dcnm.dc_networks
   vm_group_a          = var.vm_group_a
   vm_group_b          = var.vm_group_b
-
-  # depends_on = [module.dcnm]
 }
-#
-# ## Firewpower Management Center (FMC) Module
-# module "fmc" {
-#   source = "./modules/fmc"
-#
-#   fmc_user      = var.fmc_user
-#   fmc_password  = var.fmc_password
-#   fmc_server    = var.fmc_server
-#   vm_group_a    = module.vcenter.vm_group_a
-#   vm_group_b    = module.vcenter.vm_group_b
-#
-#   # depends_on = [module.vcenter]
-#
-# }
