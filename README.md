@@ -45,14 +45,6 @@ The vCenter module makes the following assumptions:
   * vCenter account password (vcenter_password)
   * vCenter server IP/FQDN (vcenter_server)
 
-The Firepower (FMC) module makes the following assumptions:
-* An existing FMC server instance has been deployed
-* The FMC server is accessible by HTTPS from the Intersight Assist VM.
-* The following variables are defined within the Terraform Workspace.  These variables should not be configured within the public GitHub repository files.
-  * FMC account username (fmc_user)
-  * FMC account password (fmc_password)
-  * FMC server IP/FQDN (fmc_server)
-
 **Note:** The FMC security automation component has been moved to a 2nd GitHub repository and will now be run from a 2nd, linked Terraform workspace.
 
 ## Link to Github Repositories
@@ -82,7 +74,7 @@ https://github.com/cisco-apjc-cloud-se/ist-vm-fmc-sync
 
 ![TFCB agent](/images/tfcb-agent.png)
 
-7.	In Terraform Cloud for Business, configure the necessary user account variables for the DCNM, FMC and vCenter servers.
+7.	In Terraform Cloud for Business, configure the necessary user account variables for the DCNM and vCenter servers.
 
 ![TFCB variables](/images/tfcb-vars.png)
 
@@ -122,19 +114,6 @@ If successfully executed, the Terraform plan will result in the following config
 ![vCenter list](/images/vcenter-list.png)
 
 ![vCenter details](/images/vcenter-details.png)
-
-### FMC Module
-* New host type network objects for each VM defined the vCenter module.
-  * Each VM’s name and static IP address will be used to define the host object.
-
-![FMC host](/images/fmc-host.png)
-
-* New network group objects for each group of VM servers
-  * The IP addresses from the host objects above will be grouped into a single object.  It is expected this object will be used for any firewall rule definitions.
-
-  **Note:** The FMC provider has an issue removing objects from network groups.  As a workaround, the IP addresses of the host objects will be used instead as literal objects in the group.
-
-![FMC group](/images/fmc-group.png)
 
 ## Expected Day 2 Changes
 Changes to the variables defined in the JSON files will result in dynamic, stateful updates across all domains. For example,
