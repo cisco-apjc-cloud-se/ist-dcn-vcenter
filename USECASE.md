@@ -56,11 +56,12 @@ The Firepower (FMC) module makes the following assumptions:
 **Note:** The FMC security automation component has been moved to a 2nd GitHub repository and will now be run from a 2nd, linked Terraform workspace.
 
 ## Link to Github Repositories
-https://github.com/richwats/ist-challenge-dcn
+https://github.com/cisco-apjc-cloud-se/ist-dcn-vcenter
+https://github.com/cisco-apjc-cloud-se/ist-vm-fmc-sync
 
 
 ## Steps to Deploy Use Case
-1.	In GitHub, create a new, or clone the example GitHub repository
+1.	In GitHub, create a new, or clone the example GitHub repository(s)
 2.	Customize the examples Terraform files & JSON variables as required
 
 ![DCNM variables](/images/dcnm-vars.png)
@@ -129,7 +130,9 @@ If successfully executed, the Terraform plan will result in the following config
 ![FMC host](/images/fmc-host.png)
 
 * New network group objects for each group of VM servers
-  * The host objects above will be grouped into a single object.  It is expected this object will be used for any firewall rule definitions.
+  * The IP addresses from the host objects above will be grouped into a single object.  It is expected this object will be used for any firewall rule definitions.
+
+  **Note:** The FMC provider has an issue removing objects from network groups.  As a workaround, the IP addresses of the host objects will be used instead as literal objects in the group.
 
 ![FMC group](/images/fmc-group.png)
 
