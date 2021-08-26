@@ -3,7 +3,7 @@ terraform {
     hostname = "app.terraform.io"
     organization = "mel-ciscolabs-com"
     workspaces {
-      name = "ist-challenge-dcn"
+      name = "ist-dcn-vcenter"
     }
   }
 }
@@ -41,7 +41,7 @@ module "vcenter" {
 
   # depends_on = [module.dcnm]
 }
-# 
+#
 # ## Firewpower Management Center (FMC) Module
 # module "fmc" {
 #   source = "./modules/fmc"
