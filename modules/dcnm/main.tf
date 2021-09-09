@@ -57,7 +57,7 @@ resource "dcnm_network" "net" {
   fabric_name     = var.dc_fabric
   name            = each.value.name
   network_id      = each.value.vni_id
-  # display_name    = each.key.name
+  display_name    = each.value.name
   description     = each.value.description
   vrf_name        = data.dcnm_vrf.dc_vrf.name
   vlan_id         = each.value.vlan_id
