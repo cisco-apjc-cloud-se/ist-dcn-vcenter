@@ -43,6 +43,21 @@ variable "dc_networks" {
   }))
 }
 
+variable "vpc_interfaces" {
+  type = map(object({
+    name = string
+    vpc_id = number
+    switch1 = object({
+      name = string
+      ports = list(string)
+      })
+    switch2 = object({
+      name = string
+      ports = list(string)
+      })
+  }))
+}
+
 ### vCenter Variables
 
 variable "vcenter_user" {
