@@ -49,6 +49,29 @@ locals {
   }
 }
 
+## Build VPC Interfaces ##
+resource "dcnm_interface" "vpc" {
+  for_each = var.vpc_interfaces
+
+  policy                  = "int_vpc_trunk_host_11_1"
+  type                    = "vpc"
+  name                    = each.value.name
+  fabric_name             = var.dcnm_fabric
+  switch_name_1           = each.value.switch1.name
+  switch_name_2           = each.value.switch2.name
+  vpc_peer1_id            = each.value.vpc_id
+  vpc_peer2_id            = each.value.vpc_id
+  mode                    = "active"
+  bpdu_gaurd_flag         = "true"
+  mtu                     = "default"
+  vpc_peer1_allowed_vlans = "none"
+  vpc_peer2_allowed_vlans = "none"
+  // vpc_peer1_access_vlans  = "10"
+  // vpc_peer2_access_vlans  = "20"
+  vpc_peer1_interface     = each.value.switch1.ports
+  vpc_peer2_interface     = each.value.switch1.ports
+}
+
 ## Build New L3 Networks ##
 
 resource "dcnm_network" "net" {
@@ -90,4 +113,6 @@ resource "dcnm_network" "net" {
       switch_ports = attachments.value["switch_ports"]
     }
   }
+
+  depends_on = [dcnm_interface.vpc]
 }
