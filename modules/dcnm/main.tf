@@ -56,7 +56,7 @@ resource "dcnm_interface" "vpc" {
   policy                  = "int_vpc_trunk_host_11_1"
   type                    = "vpc"
   name                    = each.value.name
-  fabric_name             = var.dcnm_fabric
+  fabric_name             = var.dc_fabric
   switch_name_1           = each.value.switch1.name
   switch_name_2           = each.value.switch2.name
   vpc_peer1_id            = each.value.vpc_id
