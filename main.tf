@@ -13,14 +13,15 @@ terraform {
 module "dcnm" {
   source = "./modules/dcnm"
 
-  dcnm_user     = var.dcnm_user
-  dcnm_password = var.dcnm_password
-  dcnm_url      = var.dcnm_url
-  dc_fabric     = var.dc_fabric
-  dc_switches   = var.dc_switches
-  svr_cluster   = var.svr_cluster
-  dc_vrf        = var.dc_vrf
-  dc_networks   = var.dc_networks
+  dcnm_user       = var.dcnm_user
+  dcnm_password   = var.dcnm_password
+  dcnm_url        = var.dcnm_url
+  dc_fabric       = var.dc_fabric
+  dc_switches     = var.dc_switches
+  svr_cluster     = var.svr_cluster
+  dc_vrf          = var.dc_vrf
+  dc_networks     = var.dc_networks
+  vpc_interfaces  = var.vpc_interfaces
 }
 
 ## VMware vCenter Module
