@@ -98,7 +98,7 @@ resource "dcnm_network" "net" {
   # dhcp_2          = "1.2.3.5"
   # dhcp_vrf        = "VRF1012"
   # loopback_id     = 100
-  # tag             = "1400"
+  tag             = "12345"
   # rt_both_flag    = true
   # trm_enable_flag = true
   l3_gateway_flag = true
