@@ -74,46 +74,46 @@ resource "dcnm_interface" "vpc" {
 
 ## Build New L3 Networks ##
 
-resource "dcnm_network" "net" {
-  for_each = var.dc_networks
-
-  fabric_name     = var.dc_fabric
-  name            = each.value.name
-  network_id      = each.value.vni_id
-  display_name    = each.value.name
-  description     = each.value.description
-  vrf_name        = data.dcnm_vrf.dc_vrf.name
-  vlan_id         = each.value.vlan_id
-  vlan_name       = each.value.name
-  ipv4_gateway    = each.value.ip_subnet
-  # ipv6_gateway    = "2001:db8::1/64"
-  # l2_only_flag    = false
-  # mtu             = 1500
-  # secondary_gw_1  = "192.0.3.1/24"
-  # secondary_gw_2  = "192.0.3.1/24"
-  # arp_supp_flag   = true
-  # ir_enable_flag  = false
-  # mcast_group     = "239.1.2.2"
-  # dhcp_1          = "1.2.3.4"
-  # dhcp_2          = "1.2.3.5"
-  # dhcp_vrf        = "VRF1012"
-  # loopback_id     = 100
-  # tag             = "1400"
-  # rt_both_flag    = true
-  # trm_enable_flag = true
-  l3_gateway_flag = true
-  deploy          = each.value.deploy
-
-  dynamic "attachments" {
-    # for_each = each.value.attachments
-    for_each = local.merged
-    content {
-      serial_number = attachments.value["serial_number"]
-      vlan_id = each.value.vlan_id
-      attach = attachments.value["attach"]
-      switch_ports = attachments.value["switch_ports"]
-    }
-  }
-
-  depends_on = [dcnm_interface.vpc]
-}
+// resource "dcnm_network" "net" {
+//   for_each = var.dc_networks
+//
+//   fabric_name     = var.dc_fabric
+//   name            = each.value.name
+//   network_id      = each.value.vni_id
+//   display_name    = each.value.name
+//   description     = each.value.description
+//   vrf_name        = data.dcnm_vrf.dc_vrf.name
+//   vlan_id         = each.value.vlan_id
+//   vlan_name       = each.value.name
+//   ipv4_gateway    = each.value.ip_subnet
+//   # ipv6_gateway    = "2001:db8::1/64"
+//   # l2_only_flag    = false
+//   # mtu             = 1500
+//   # secondary_gw_1  = "192.0.3.1/24"
+//   # secondary_gw_2  = "192.0.3.1/24"
+//   # arp_supp_flag   = true
+//   # ir_enable_flag  = false
+//   # mcast_group     = "239.1.2.2"
+//   # dhcp_1          = "1.2.3.4"
+//   # dhcp_2          = "1.2.3.5"
+//   # dhcp_vrf        = "VRF1012"
+//   # loopback_id     = 100
+//   # tag             = "1400"
+//   # rt_both_flag    = true
+//   # trm_enable_flag = true
+//   l3_gateway_flag = true
+//   deploy          = each.value.deploy
+//
+//   dynamic "attachments" {
+//     # for_each = each.value.attachments
+//     for_each = local.merged
+//     content {
+//       serial_number = attachments.value["serial_number"]
+//       vlan_id = each.value.vlan_id
+//       attach = attachments.value["attach"]
+//       switch_ports = attachments.value["switch_ports"]
+//     }
+//   }
+//
+//   depends_on = [dcnm_interface.vpc]
+// }
