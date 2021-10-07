@@ -101,22 +101,24 @@ resource "dcnm_network" "net" {
   rt_both_flag    = false
   trm_enable_flag = false
   l3_gateway_flag = true
-  deploy          = each.value.deploy
+  ### Override File to Deploy ###
+  deploy          = false
   template        = "Default_Network_Universal"
   extension_template = "Default_Network_Extension_Universal"
   service_template = ""
   source = ""
 
-  dynamic "attachments" {
-    # for_each = each.value.attachments
-    for_each = local.merged
-    content {
-      serial_number = attachments.value["serial_number"]
-      vlan_id = each.value.vlan_id
-      attach = attachments.value["attach"]
-      switch_ports = attachments.value["switch_ports"]
-    }
-  }
+  // ### In Overide File ###
+  // dynamic "attachments" {
+  //   # for_each = each.value.attachments
+  //   for_each = local.merged
+  //   content {
+  //     serial_number = attachments.value["serial_number"]
+  //     vlan_id = each.value.vlan_id
+  //     attach = attachments.value["attach"]
+  //     switch_ports = attachments.value["switch_ports"]
+  //   }
+  // }
 
   depends_on = [dcnm_interface.vpc]
 }
