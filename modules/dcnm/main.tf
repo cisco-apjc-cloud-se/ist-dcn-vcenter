@@ -102,6 +102,8 @@ resource "dcnm_network" "net" {
   trm_enable_flag = false
   l3_gateway_flag = true
   deploy          = each.value.deploy
+  template        = "Default_VRF_Universal"
+  extension_template = "Default_Network_Extension_Universal"
 
   dynamic "attachments" {
     # for_each = each.value.attachments
