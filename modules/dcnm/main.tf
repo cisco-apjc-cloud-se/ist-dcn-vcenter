@@ -102,18 +102,18 @@ resource "dcnm_network" "net" {
   # rt_both_flag    = true
   # trm_enable_flag = true
   l3_gateway_flag = true
-  deploy          = each.value.deploy
+  // deploy          = each.value.deploy
 
-  dynamic "attachments" {
-    # for_each = each.value.attachments
-    for_each = local.merged
-    content {
-      serial_number = attachments.value["serial_number"]
-      vlan_id = each.value.vlan_id
-      attach = attachments.value["attach"]
-      switch_ports = attachments.value["switch_ports"]
-    }
-  }
+  // dynamic "attachments" {
+  //   # for_each = each.value.attachments
+  //   for_each = local.merged
+  //   content {
+  //     serial_number = attachments.value["serial_number"]
+  //     vlan_id = each.value.vlan_id
+  //     attach = attachments.value["attach"]
+  //     switch_ports = attachments.value["switch_ports"]
+  //   }
+  // }
 
   depends_on = [dcnm_interface.vpc]
 }
