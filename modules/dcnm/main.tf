@@ -87,7 +87,7 @@ resource "dcnm_network" "net" {
   vlan_name       = each.value.name
   ipv4_gateway    = each.value.ip_subnet
   # ipv6_gateway    = "2001:db8::1/64"
-  l2_only_flag    = true
+  # l2_only_flag    = false
   # mtu             = 1500
   # secondary_gw_1  = "192.0.3.1/24"
   # secondary_gw_2  = "192.0.3.1/24"
