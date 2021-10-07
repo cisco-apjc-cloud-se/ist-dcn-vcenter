@@ -86,22 +86,22 @@ resource "dcnm_network" "net" {
   vlan_id         = each.value.vlan_id
   vlan_name       = each.value.name
   ipv4_gateway    = each.value.ip_subnet
-  ipv6_gateway    = ""
+  # ipv6_gateway    = ""
   # mtu             = 1500
-  secondary_gw_1  = ""
-  secondary_gw_2  = ""
+  # secondary_gw_1  = ""
+  # secondary_gw_2  = ""
   # arp_supp_flag   = true
   # ir_enable_flag  = false
   # mcast_group     = "239.1.2.2"
-  dhcp_1          = ""
+  # dhcp_1          = ""
   # dhcp_2          = ""
-  dhcp_vrf        = ""
+  # dhcp_vrf        = ""
   # loopback_id     = 100
-  tag             = "12345"
+  # tag             = "12345"
   # rt_both_flag    = true
   # trm_enable_flag = true
   l3_gateway_flag = true
-  deploy          = each.value.deploy
+  deploy          = false #each.value.deploy
 
   dynamic "attachments" {
     # for_each = each.value.attachments
