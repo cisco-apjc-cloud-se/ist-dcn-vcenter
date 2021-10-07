@@ -105,7 +105,7 @@ resource "dcnm_network" "net" {
   // template        = "Default_Network_Universal"
   // extension_template = "Default_Network_Extension_Universal"
   // service_template = ""
-  source = ""
+  // source = ""
 
   dynamic "attachments" {
     # for_each = each.value.attachments
