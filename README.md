@@ -99,6 +99,8 @@ If successfully executed, the Terraform plan will result in the following config
 
 ![DCNM interface](/images/dcnm-interface.png)
 
+* [Updated Oct-2021] The DCNM module will now take a VPC Interface variable and build a set of vPC interfaces that will then be used by the Networks.
+
 ### vCenter Module
 * New distributed port groups, within the existing distributed virtual switch for each new network defined in the DCNM module.
   * Each new distributed port group will use the same name and VLAN ID as the DCNM L3 Network
@@ -190,6 +192,26 @@ Changes to the variables defined in the JSON files will result in dynamic, state
       "switch_ports": [
         "Ethernet1/1"  # Host 2 Uplink Port 2
       ]
+    }
+  },
+```
+
+
+* Each new server would require its own vPC interface.  
+
+```
+  "vpc_interfaces": {
+    "vpc5": {
+      "name": "vPC5",
+      "vpc_id": 5,
+      "switch1": {
+        "name": "DC3-LEAF-1",
+        "ports": ["Eth1/5"]
+      },
+      "switch2": {
+        "name": "DC3-LEAF-2",
+        "ports": ["Eth1/5"]
+      }
     }
   },
 ```
