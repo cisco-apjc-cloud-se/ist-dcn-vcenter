@@ -108,17 +108,16 @@ resource "dcnm_network" "net" {
   service_template = ""
   source = ""
 
-  // ### In Overide File ###
-  // dynamic "attachments" {
-  //   # for_each = each.value.attachments
-  //   for_each = local.merged
-  //   content {
-  //     serial_number = attachments.value["serial_number"]
-  //     vlan_id = each.value.vlan_id
-  //     attach = attachments.value["attach"]
-  //     switch_ports = attachments.value["switch_ports"]
-  //   }
-  // }
+  dynamic "attachments" {
+  # for_each = each.value.attachments
+    for_each = local.merged
+    content {
+      serial_number = attachments.value["serial_number"]
+      vlan_id = each.value.vlan_id
+      attach = attachments.value["attach"]
+      switch_ports = attachments.value["switch_ports"]
+    }
+  }
 
   depends_on = [dcnm_interface.vpc]
 }
