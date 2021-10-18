@@ -1,5 +1,7 @@
 # Integrated DC Network, Infrastructure & Security Automation - Part 1
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/cisco-apjc-cloud-se/ist-dcn-vcenter)
+
 ## Overview
 When deploying applications to a data center, there are certain elements of common configuration that would be used differently by different operational teams.  Traditionally, each team would rely on this information being passed manually in ad-hoc manner.   In a modern Infrastructure-as-Code (IaC) approach, this configuration can be defined once but leveraged consistently across multiple domains such as networking, infrastructure and security automatically.
 In this example, we are using a single Terraform plan to deploy a set of new DC networks, clone and configure virtual machines to use these networks and then create matching firewall objects and rules – all from the same simplified intent defined as a minimal set of variables.
