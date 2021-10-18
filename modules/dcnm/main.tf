@@ -102,7 +102,7 @@ resource "dcnm_network" "net" {
   trm_enable_flag = false
   l3_gateway_flag = true
   ### Override File to Deploy ###
-  deploy          = false
+  deploy          = true
   template        = "MODIFIED_Network_Universal"
   extension_template = "Default_Network_Extension_Universal"
   service_template = ""
