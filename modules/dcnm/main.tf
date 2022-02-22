@@ -62,7 +62,7 @@ resource "dcnm_interface" "vpc" {
   vpc_peer1_id            = each.value.vpc_id
   vpc_peer2_id            = each.value.vpc_id
   mode                    = "active"
-  bpdu_gaurd_flag         = "true"
+  bpdu_guard_flag         = "true"
   mtu                     = "default"
   vpc_peer1_allowed_vlans = "none"
   vpc_peer2_allowed_vlans = "none"
